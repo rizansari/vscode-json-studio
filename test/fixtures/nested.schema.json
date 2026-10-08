@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["store"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "store": {
+      "type": "object",
+      "required": ["name", "book"],
+      "properties": {
+        "name": { "type": "string" },
+        "book": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "title", "price"],
+            "properties": { "id": { "type": "integer" }, "title": { "type": "string" }, "price": { "type": "number", "maximum": 20 } }
+          }
+        }
+      }
+    }
+  }
+}

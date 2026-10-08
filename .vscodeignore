@@ -1,0 +1,8 @@
+**
+!dist/extension.js
+!dist/jq.wasm
+!dist/webview/**
+!package.json
+!README.md
+!LICENSE
+!CHANGELOG.md

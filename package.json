@@ -1,0 +1,314 @@
+{
+  "name": "json-studio",
+  "displayName": "JSON Studio",
+  "description": "Swiss army knife for JSON: tree & table view/edit, repair, JSONPath/JMESPath/jq queries, transforms, conversions, type generation, diff and schema validation.",
+  "version": "0.1.0",
+  "publisher": "json-studio",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Formatters",
+    "Linters",
+    "Visualization",
+    "Other"
+  ],
+  "keywords": [
+    "json",
+    "jq",
+    "jsonpath",
+    "jmespath",
+    "viewer",
+    "table",
+    "repair"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onLanguage:json",
+    "onLanguage:jsonc"
+  ],
+  "contributes": {
+    "customEditors": [
+      {
+        "viewType": "jsonStudio.editor",
+        "displayName": "JSON Studio",
+        "selector": [
+          {
+            "filenamePattern": "*.json"
+          },
+          {
+            "filenamePattern": "*.jsonc"
+          },
+          {
+            "filenamePattern": "*.json5"
+          }
+        ],
+        "priority": "option"
+      }
+    ],
+    "commands": [
+      {
+        "command": "jsonStudio.open",
+        "title": "Open in JSON Studio",
+        "category": "JSON Studio",
+        "icon": "$(json)"
+      },
+      {
+        "command": "jsonStudio.openToSide",
+        "title": "Open JSON Studio to the Side",
+        "category": "JSON Studio",
+        "icon": "$(split-horizontal)"
+      },
+      {
+        "command": "jsonStudio.format",
+        "title": "Beautify",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.minify",
+        "title": "Minify",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.sortKeys",
+        "title": "Sort Keys (Recursive)",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.repair",
+        "title": "Repair JSON",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.copyPath",
+        "title": "Copy Path at Cursor",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.query",
+        "title": "Query / Filter",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.transform",
+        "title": "Transform\u2026",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.convertTo",
+        "title": "Convert JSON to\u2026",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.convertFrom",
+        "title": "Convert to JSON (from YAML/CSV/XML/TOML)",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.generateTypes",
+        "title": "Generate Types\u2026",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.inferSchema",
+        "title": "Infer JSON Schema",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.validateSchema",
+        "title": "Validate Against JSON Schema\u2026",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.diffWithFile",
+        "title": "Semantic Diff with File\u2026",
+        "category": "JSON Studio"
+      },
+      {
+        "command": "jsonStudio.diffWithClipboard",
+        "title": "Semantic Diff with Clipboard",
+        "category": "JSON Studio"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "jsonStudio.openToSide",
+          "when": "resourceLangId == json || resourceLangId == jsonc",
+          "group": "navigation"
+        }
+      ],
+      "editor/context": [
+        {
+          "submenu": "jsonStudio.context",
+          "when": "resourceLangId == json || resourceLangId == jsonc",
+          "group": "1_modification"
+        },
+        {
+          "command": "jsonStudio.convertFrom",
+          "when": "resourceExtname =~ /\\.(ya?ml|csv|tsv|xml|toml)$/",
+          "group": "1_modification"
+        }
+      ],
+      "jsonStudio.context": [
+        {
+          "command": "jsonStudio.format",
+          "group": "1_format"
+        },
+        {
+          "command": "jsonStudio.minify",
+          "group": "1_format"
+        },
+        {
+          "command": "jsonStudio.sortKeys",
+          "group": "1_format"
+        },
+        {
+          "command": "jsonStudio.repair",
+          "group": "1_format"
+        },
+        {
+          "command": "jsonStudio.copyPath",
+          "group": "2_nav"
+        },
+        {
+          "command": "jsonStudio.transform",
+          "group": "3_tools"
+        },
+        {
+          "command": "jsonStudio.convertTo",
+          "group": "3_tools"
+        },
+        {
+          "command": "jsonStudio.generateTypes",
+          "group": "3_tools"
+        },
+        {
+          "command": "jsonStudio.inferSchema",
+          "group": "3_tools"
+        },
+        {
+          "command": "jsonStudio.validateSchema",
+          "group": "4_check"
+        },
+        {
+          "command": "jsonStudio.diffWithFile",
+          "group": "4_check"
+        },
+        {
+          "command": "jsonStudio.diffWithClipboard",
+          "group": "4_check"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "jsonStudio.open",
+          "when": "resourceExtname =~ /\\.json[c5]?$/",
+          "group": "navigation@9"
+        }
+      ]
+    },
+    "submenus": [
+      {
+        "id": "jsonStudio.context",
+        "label": "JSON Studio"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "jsonStudio.format",
+        "key": "ctrl+alt+b",
+        "mac": "cmd+alt+b",
+        "when": "editorLangId == json || editorLangId == jsonc"
+      },
+      {
+        "command": "jsonStudio.query",
+        "key": "ctrl+alt+q",
+        "mac": "cmd+alt+q",
+        "when": "editorLangId == json || editorLangId == jsonc"
+      }
+    ],
+    "configuration": {
+      "title": "JSON Studio",
+      "properties": {
+        "jsonStudio.indent": {
+          "type": "string",
+          "enum": [
+            "2",
+            "4",
+            "tab"
+          ],
+          "default": "2",
+          "description": "Indentation used by Beautify and other rewrites."
+        },
+        "jsonStudio.repairOnOpen": {
+          "type": "boolean",
+          "default": false,
+          "description": "Offer to repair invalid JSON when it is opened in JSON Studio."
+        },
+        "jsonStudio.schema.path": {
+          "type": "string",
+          "default": "",
+          "description": "Default JSON Schema file (workspace-relative or absolute) used by validation when the document has no $schema."
+        },
+        "jsonStudio.diff.arrayIdKey": {
+          "type": "string",
+          "default": "id",
+          "description": "Key used to match array items in semantic diff (empty = match by position)."
+        },
+        "jsonStudio.queryHistorySize": {
+          "type": "number",
+          "default": 30,
+          "description": "Number of queries to keep in history."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "build": "npm run build:ext && npm run build:webview",
+    "build:ext": "node esbuild.mjs",
+    "build:webview": "vite build --config webview/vite.config.ts",
+    "watch:ext": "node esbuild.mjs --watch",
+    "watch:webview": "vite build --watch --config webview/vite.config.ts",
+    "typecheck": "tsc --noEmit -p . && tsc --noEmit -p webview",
+    "test": "vitest run",
+    "package": "vsce package --no-dependencies --allow-missing-repository",
+    "vscode:prepublish": "node esbuild.mjs --production && npm run build:webview",
+    "test:integration": "npm run build && esbuild test/integration/suite.ts --bundle --platform=node --format=cjs --external:vscode --outfile=dist/test/suite.js && node test/integration/runTest.mjs"
+  },
+  "dependencies": {
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "fast-xml-parser": "^5.11.2",
+    "jmespath": "^0.16.0",
+    "jq-web": "^0.6.2",
+    "js-yaml": "^5.4.3",
+    "jsonc-parser": "^3.3.1",
+    "jsondiffpatch": "^0.7.6",
+    "jsonpath-plus": "^10.4.0",
+    "jsonrepair": "^3.15.0",
+    "papaparse": "^5.7.0",
+    "quicktype-core": "^26.0.0",
+    "smol-toml": "^1.9.0"
+  },
+  "devDependencies": {
+    "@tanstack/react-virtual": "^3.14.13",
+    "@types/jmespath": "^0.15.2",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.19.43",
+    "@types/papaparse": "^5.5.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/vscode": "^1.90.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "@vscode/test-electron": "^2.5.2",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.2",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^7.0.2",
+    "vite": "^6.4.4",
+    "vitest": "^4.1.11"
+  }
+}

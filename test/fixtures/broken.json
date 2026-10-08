@@ -1,0 +1,9 @@
+// exported from a Python script
+{
+  name: 'inventory',
+  'active': True,
+  "owner": None,
+  "items": [
+    {"id": 1, "name": "Widget", "price": 9.99,},
+    {"id": 2 "name": "Gadget", "price": 24.5}
+  ],
