@@ -3,8 +3,21 @@
   "displayName": "JSON Studio",
   "description": "Swiss army knife for JSON: tree & table view/edit, repair, JSONPath/JMESPath/jq queries, transforms, conversions, type generation, diff and schema validation.",
   "version": "0.1.0",
-  "publisher": "json-studio",
+  "publisher": "RizwanAnsari",
   "license": "MIT",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#111827",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rizansari/vscode-json-studio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rizansari/vscode-json-studio/issues"
+  },
+  "homepage": "https://github.com/rizansari/vscode-json-studio#readme",
   "engines": {
     "vscode": "^1.90.0"
   },
@@ -273,7 +286,8 @@
     "watch:webview": "vite build --watch --config webview/vite.config.ts",
     "typecheck": "tsc --noEmit -p . && tsc --noEmit -p webview",
     "test": "vitest run",
-    "package": "vsce package --no-dependencies --allow-missing-repository",
+    "package": "vsce package --no-dependencies",
+    "publish": "vsce publish --no-dependencies",
     "vscode:prepublish": "node esbuild.mjs --production && npm run build:webview",
     "test:integration": "npm run build && esbuild test/integration/suite.ts --bundle --platform=node --format=cjs --external:vscode --outfile=dist/test/suite.js && node test/integration/runTest.mjs"
   },

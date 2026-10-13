@@ -1,5 +1,7 @@
 # JSON Studio
 
+![JSON Studio](images/extension-banner.png)
+
 A Swiss Army knife for JSON in VS Code. View, edit, repair, query, reshape, convert and compare JSON without leaving the editor.
 
 ## Open it

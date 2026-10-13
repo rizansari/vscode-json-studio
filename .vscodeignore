@@ -2,6 +2,7 @@
 !dist/extension.js
 !dist/jq.wasm
 !dist/webview/**
+!images/icon.png
 !package.json
 !README.md
 !LICENSE
