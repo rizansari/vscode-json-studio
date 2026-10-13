@@ -60,7 +60,7 @@ jobs:
       - name: Publish to VS Code Marketplace
         run: npx vsce publish --no-dependencies --packagePath "json-studio-$VERSION.vsix"
         env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+          VSCE_PAT: ${{ secrets.VS_MARKETPLACE_TOKEN }}
 
       - name: Attach .vsix to release
         run: gh release upload "$TAG" "json-studio-$VERSION.vsix" --clobber
